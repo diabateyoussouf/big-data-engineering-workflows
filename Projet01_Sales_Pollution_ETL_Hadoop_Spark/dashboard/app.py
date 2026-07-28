@@ -1,6 +1,15 @@
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+
+# ---------------------------------------------------------
+# GESTION DYNAMIQUE DES CHEMINS (Compatible Local + Cloud)
+# ---------------------------------------------------------
+# __file__ correspond à app.py (dans Projet01.../dashboard/)
+# parent.parent remonte d'un niveau vers Projet01.../
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
 
 # Configuration de la page
 st.set_page_config(
@@ -30,9 +39,9 @@ if menu == "🛒 Performance Commerciale & Ventes":
     st.write("Ce module synthétise l'ensemble des transactions de la plateforme pour identifier les leviers de croissance.")
 
     try:
-        sales_day = pd.read_parquet("data/processed_sales_by_day.parquet")
-        sales_cat = pd.read_parquet("data/processed_sales_by_category.parquet")
-        sales_store = pd.read_parquet("data/processed_sales_by_store.parquet")
+        sales_day = pd.read_parquet(DATA_DIR / "processed_sales_by_day.parquet")
+        sales_cat = pd.read_parquet(DATA_DIR / "processed_sales_by_category.parquet")
+        sales_store = pd.read_parquet(DATA_DIR / "processed_sales_by_store.parquet")
 
         # KPIs Métiers
         col1, col2, col3 = st.columns(3)
@@ -94,7 +103,7 @@ elif menu == "🌍 Impact & Qualité de l'Air":
     st.write("Analyse des niveaux de pollution urbaine pour guider les politiques d'aménagement et de santé publique.")
 
     try:
-        pollution_full = pd.read_parquet("data/processed_pollution_full.parquet")
+        pollution_full = pd.read_parquet(DATA_DIR / "processed_pollution_full.parquet")
 
         # KPIs Environnementaux
         col1, col2, col3 = st.columns(3)
