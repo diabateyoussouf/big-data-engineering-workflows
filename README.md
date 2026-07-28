@@ -59,7 +59,8 @@ Le cas d'usage principal (**`Projet01`**) couvre le secteur du **Retail / E-comm
 <!-- PROMPT IA RECOMMANDE :
 "A sleek laptop device mockup displaying a modern business analytics dashboard with bar charts, pie charts and scatter plots, dark aesthetic, clean interface" -->
 <p align="center">
-  <img src="https://via.placeholder.com/1000x500.png?text=%F0%9F%8E%A8+Aper%C3%A7u+du+Dashboard+IA+(Dashboard+Preview)" alt="Dashboard Preview" width="90%"/>
+  <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/6a797c40-41d8-4b12-b5ca-9bb2aa7cf40e" />
+
 </p>
 
 * 🛒 **Performance Commerciale :** Analyse du Chiffre d'Affaires global, répartition hebdomadaire des ventes et Top 10 des catégories produits.
