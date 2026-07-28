@@ -42,7 +42,8 @@ Le cas d'usage principal (**`Projet01`**) couvre le secteur du **Retail / E-comm
 <!-- PROMPT IA RECOMMANDE :
 "An elegant dark mode architectural diagram of a Big Data Pipeline: Raw TXT/CSV Files -> Apache Spark Processing -> Aggregated Parquet Files -> Streamlit Cloud Dashboard, modern vector icon style" -->
 <p align="center">
-  <img src="https://via.placeholder.com/1000x450.png?text=%F0%9F%8E%A8+Sch%C3%A9ma+d'Architecture+IA+(Architecture+Diagram)" alt="Architecture Diagram" width="90%"/>
+  <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/8e0da92a-9b1c-4950-b3a0-ab82f206f517" />
+
 </p>
 
 1. **Extraction & Nettoyage :** Ingestion des fichiers bruts de ventes (`purchases.txt`) et des métriques de pollution urbaine.
