@@ -11,7 +11,7 @@
 <!-- PROMPT IA RECOMMANDE (Midjourney / DALL-E) :
 "A futuristic dark-mode data engineering pipeline dashboard banner, showing Spark data streams flowing into interactive charts, high-tech isometric style, blue and purple glowing lines, clean 8k render" -->
 <p align="center">
-  <img src="https://via.placeholder.com/1200x400.png?text=%F0%9F%8E%A8+Banni%C3%A8re+Principale+IA+(Header+Banner)" alt="Header Banner" width="100%"/>
+  <img width="2172" height="724" alt="image" src="https://github.com/user-attachments/assets/774e3b6c-b2fd-492a-a01f-d24151507d74" />
 </p>
 
 ## 📌 Présentation du Projet
