@@ -3,6 +3,7 @@
 [![Live Dashboard](https://img.shields.io/badge/Streamlit_Cloud-Live_App-red?style=for-the-badge&logo=streamlit)](https://hadoop-pyspark-dashboard.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)](https://www.python.org/)
 [![PySpark](https://img.shields.io/badge/PySpark-4.2.0-orange?style=for-the-badge&logo=apachespark)](https://spark.apache.org/)
+[![Apache Pig](https://img.shields.io/badge/Apache_Pig-0.17-orange?style=for-the-badge&logo=apache)](https://pig.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
@@ -13,7 +14,7 @@
 
 ## 📌 Vision & Présentation Globale
 
-Ce dépôt est une suite centralisée de **workflows d'ingénierie Big Data et de tableaux de bord décisionnels**. Il regroupe plusieurs cas d'usage industriels visant à démontrer la transformation de volumes importants de données brutes en **indicateurs métiers à haute valeur ajoutée** grâce à des architectures distribuées modernes (Hadoop, PySpark, Lakehouse, Streamlit Cloud).
+Ce dépôt est une suite centralisée de **workflows d'ingénierie Big Data et de tableaux de bord décisionnels**. Il regroupe plusieurs cas d'usage industriels visant à démontrer la transformation de volumes importants de données brutes en **indicateurs métiers à haute valeur ajoutée** grâce à des architectures distribuées modernes (Hadoop, Apache Pig, PySpark, Lakehouse, Streamlit Cloud).
 
 Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son propre pipeline d'ETL, de son modèle de données et de sa documentation spécifique.
 
@@ -24,8 +25,9 @@ Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son
 | Projet | Domaine & Cas d'Usage | Technologies Clés | Statut / Lien |
 | :--- | :--- | :--- | :--- |
 | **`Projet01`** | **Retail & Télémétrie Environnementale**<br>_Benchmark Hadoop MapReduce vs PySpark ETL & Analytics_ | PySpark 4, Hadoop, Parquet, Streamlit | 🟢 **Déployé** — [Live App](https://hadoop-pyspark-dashboard.streamlit.app/) / [Documentation](./Projet01_Sales_Pollution_ETL_Hadoop_Spark/) |
-| **`Projet02`** | **Streaming & Real-Time Analytics**<br>_Traitement de flux en temps réel_ | Kafka, Spark Streaming, Delta Lake | 🟡 *À venir* |
-| **`Projet03`** | **Data Lakehouse & Machine Learning**<br>_Analyse prédictive & Orchestration ETL_ | Delta Lake, Airflow, MLflow | ⚪ *Planifié* |
+| **`Projet02`** | **Pig Latin Dataflow & Analytics**<br>_Pipeline déclaratif et agrégations sur données transactionnelles_ | Apache Pig 0.17, Pig Latin, Hadoop | 🟢 **Terminé** — [Documentation](./Projet02_Pig_Latin_Analytics/) |
+| **`Projet03`** | **Streaming & Real-Time Analytics**<br>_Traitement de flux en temps réel_ | Kafka, Spark Streaming, Delta Lake | 🟡 *À venir* |
+| **`Projet04`** | **Data Lakehouse & Machine Learning**<br>_Analyse prédictive & Orchestration ETL_ | Delta Lake, Airflow, MLflow | ⚪ *Planifié* |
 
 ---
 
@@ -33,7 +35,7 @@ Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son
 
 | Catégorie | Technologies & Outils |
 | :--- | :--- |
-| **Ingestion & Processing** | `PySpark 4.2.0`, `Hadoop MapReduce`, `Python 3.10+` |
+| **Ingestion & Processing** | `PySpark 4.2.0`, `Apache Pig (Pig Latin)`, `Hadoop MapReduce`, `Python 3.10+` |
 | **Stockage & Formats** | `Apache Parquet` (Stockage en colonnes optimisé), `HDFS` |
 | **Data Viz & Dashboard** | `Streamlit 1.60`, `Plotly Express`, `Pandas` |
 | **CI/CD & Deployment** | `Streamlit Cloud`, `Git / GitHub` |
@@ -50,8 +52,8 @@ Chaque workflow de ce dépôt suit un pipeline de données rigoureux et optimis�
 </p>
 
 1. **Extraction & Nettoyage :** Ingestion de fichiers bruts volumineux (logs, transactions CSV/TXT, télémétrie).
-2. **ETL Distribué :** Nettoyage, jointures et calculs d'agrégations distribués via **PySpark** ou **Hadoop**.
-3. **Stockage Colonne (Parquet) :** Sauvegarde des données agrégées sous format binaire compressé pour accélérer les requêtes analytics.
+2. **ETL Distribué :** Nettoyage, jointures et calculs d'agrégations distribués via **PySpark**, **Pig Latin** ou **Hadoop MapReduce**.
+3. **Stockage Colonne / Binaire :** Sauvegarde des données agrégées sous format binaire/compressé (`Parquet`, `PigStorage`) pour accélérer les requêtes analytics.
 4. **Restitution & Dashboarding :** Publication d'interfaces décisionnelles interactives hébergées sur le Cloud.
 
 ---
@@ -83,4 +85,9 @@ big-data-engineering-workflows/
 │   ├── run_pipeline.sh                # Script Bash d'exécution de l'ETL
 │   └── README.md                      # Documentation détaillée du Projet 01
 │
-└── Projet02_.../                      # Prochain projet Big Data (à venir)
+├── Projet02_Pig_Latin_Analytics/
+│   ├── scripts/
+│   │   └── sales_analytics.pig        # Script Pig Latin d'ETL & agrégation
+│   └── README.md                      # Documentation du Projet 02
+│
+└── Projet03_.../                      # Prochain projet Big Data (à venir)
