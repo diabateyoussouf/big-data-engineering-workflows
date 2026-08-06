@@ -15,7 +15,7 @@
 
 ## 📌 Vision & Présentation Globale
 
-Ce dépôt est une suite centralisée de **workflows d'ingénierie Big Data et de tableaux de bord décisionnels**. Il regroupe plusieurs cas d'usage industriels visant à démontrer la transformation de volumes importants de données brutes en **indicateurs métiers à haute valeur ajoutée** grâce à des architectures distribuées modernes (Hadoop, Apache Pig, Apache Hive, PySpark, Lakehouse, Streamlit Cloud).
+Ce dépôt est une suite centralisée de **workflows d'ingénierie Big Data, de Feature Stores NoSQL et de tableaux de bord décisionnels propulsés par l'IA Agentique**. Il regroupe plusieurs cas d'usage industriels visant à démontrer la transformation de volumes importants de données brutes en **indicateurs métiers à haute valeur ajoutée** grâce à des architectures distribuées modernes (Hadoop, Apache Pig, Apache Hive, PySpark, Apache HBase, LangGraph, Streamlit Cloud).
 
 Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son propre pipeline d'ETL, de son modèle de données et de sa documentation spécifique.
 
@@ -28,7 +28,7 @@ Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son
 | **`Projet01`** | **Retail & Télémétrie Environnementale**<br>_Benchmark Hadoop MapReduce vs PySpark ETL & Analytics_ | PySpark 4, Hadoop, Parquet, Streamlit | 🟢 **Déployé** — [Live App](https://hadoop-pyspark-dashboard.streamlit.app/) / [Documentation](./Projet01_Sales_Pollution_ETL_Hadoop_Spark/) |
 | **`Projet02`** | **Pig Latin Dataflow & Analytics**<br>_Pipeline déclaratif et agrégations sur données transactionnelles_ | Apache Pig 0.17, Pig Latin, Hadoop | 🟢 **Terminé** — [Documentation](./Projet02_Pig_Latin_Analytics/) |
 | **`Projet03`** | **HiveQL Data Warehouse & Business Intelligence**<br>_Data Warehousing distribué, Window Functions & Studio SQL_ | Apache Hive, HiveQL, DuckDB, Streamlit | 🟢 **Déployé** — [Live App](https://big-data-engineering-workflows-wvurgwswqhwdaraapmxk4a.streamlit.app/) / [Documentation](./Projet03_Hive_Data_Warehouse/) |
-| **`Projet04`** | **Data Lakehouse & Machine Learning**<br>_Analyse prédictive & Orchestration ETL_ | Delta Lake, Airflow, MLflow | ⚪ *Planifié* |
+| **`Projet04`** | **HBase NoSQL Feature Store & Agentic AI**<br>_Feature Store basse latence, Tool Calling LangGraph & RAG_ | Apache HBase, LangGraph, Mistral AI, ChromaDB | 🟢 **Terminé** — [Documentation](./Projet04_HBase_LangGraph_Agentic_AI/) |
 
 ---
 
@@ -37,9 +37,10 @@ Chaque sous-dossier du dépôt constitue un **projet autonome** disposant de son
 | Catégorie | Technologies & Outils |
 | :--- | :--- |
 | **Ingestion & Processing** | `PySpark 4.2.0`, `Apache Hive (HiveQL)`, `Apache Pig (Pig Latin)`, `DuckDB`, `Hadoop MapReduce` |
+| **NoSQL & Agentic AI** | `Apache HBase`, `HappyBase`, `LangGraph`, `Mistral AI`, `ChromaDB` |
 | **Stockage & Formats** | `Apache Parquet` (Stockage colonne optimisé), `Hive Metastore`, `HDFS` |
 | **Data Viz & Dashboard** | `Streamlit 1.40+`, `Plotly Express`, `Pandas` |
-| **CI/CD & Deployment** | `Streamlit Cloud`, `Git / GitHub` |
+| **CI/CD & Deployment** | `Streamlit Cloud`, `Git / GitHub`, `Docker` |
 | **Environnement OS** | `Linux (Ubuntu)`, `Bash Scripting` |
 
 ---
@@ -54,8 +55,8 @@ Chaque workflow de ce dépôt suit un pipeline de données rigoureux et optimis�
 
 1. **Extraction & Nettoyage :** Ingestion de fichiers bruts volumineux (logs, transactions CSV/TXT, télémétrie).
 2. **ETL Distribué :** Nettoyage, jointures et calculs d'agrégations distribués via **PySpark**, **HiveQL**, **Pig Latin** ou **Hadoop MapReduce**.
-3. **Stockage Colonne / Binaire :** Sauvegarde des données agrégées sous format binaire/compressé (`Parquet`, `Hive External Tables`, `PigStorage`) pour accélérer les requêtes analytics.
-4. **Restitution & Dashboarding :** Publication d'interfaces décisionnelles interactives et consoles SQL hébergées sur le Cloud.
+3. **Stockage Colonne / NoSQL :** Sauvegarde des données agrégées sous format binaire/compressé (`Parquet`, `Hive External Tables`) ou en table orientée colonnes **HBase** pour servir de Feature Store.
+4. **Restitution & Agentic AI :** Publication d'interfaces décisionnelles interactives et agents IA autonomes (LangGraph) capables d'exécuter des requêtes NoSQL via Function Calling.
 
 ---
 
@@ -75,10 +76,10 @@ Chaque workflow de ce dépôt suit un pipeline de données rigoureux et optimis�
 
 ```text
 big-data-engineering-workflows/
-├── data/                               # Dataset partagé (échantillon léger pour le Cloud)
+├── data/                               # Dataset partagé (échantillon léger)
 │   └── purchases.txt
 ├── requirements.txt                    # Dépendances Python globales pour Streamlit Cloud
-├── .gitignore                          # Exclusions Git (fichiers bruts > 100 Mo, caches, venv)
+├── .gitignore                          # Exclusions Git (fichiers bruts > 100 Mo, caches, secrets)
 ├── README.md                           # Documentation principale du dépôt
 │
 ├── Projet01_Sales_Pollution_ETL_Hadoop_Spark/
@@ -93,10 +94,19 @@ big-data-engineering-workflows/
 │   │   └── sales_analytics.pig         # Script Pig Latin d'ETL & agrégation
 │   └── README.md                       # Documentation du Projet 02
 │
-└── Projet03_Hive_Data_Warehouse/
+├── Projet03_Hive_Data_Warehouse/
+│   ├── dashboard/
+│   │   └── app.py                      # Application Streamlit & Console HiveQL
+│   ├── scripts/
+│   │   ├── 01_create_tables.hql        # Scripts de création de schémas HiveQL
+│   │   └── 02_analytical_queries.hql  # Requêtes métiers & Window Functions
+│   └── README.md                       # Documentation détaillée du Projet 03
+│
+└── Projet04_HBase_LangGraph_Agentic_AI/
+    ├── agents/
+    │   └── rag_graph.py                # Agent LangGraph (Tool Calling & RAG)
     ├── dashboard/
-    │   └── app.py                      # Application Streamlit & Console HiveQL du Projet 03
-    ├── scripts/
-    │   ├── 01_create_tables.hql        # Scripts de création de schémas HiveQL
-    │   └── 02_analytical_queries.hql  # Requêtes métiers & Window Functions HiveQL
-    └── README.md                       # Documentation détaillée du Projet 03
+    │   └── app.py                      # Dashboard Streamlit & Agent IA
+    ├── hbase/
+    │   └── ingest_real_data.py        # Ingestion du Feature Store HBase
+    └── README.md                       # Documentation du Projet 04
